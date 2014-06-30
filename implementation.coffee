@@ -14,3 +14,12 @@ module.exports = implementation:
    debugger: Alien.synchronous ->
       debugger
       new Label 'debugger'
+      
+   void: new Alien(
+      (caller, $)->
+         @caller = caller
+         @original = this
+         $.stage @caller, @original.clone()
+      (_, $)->
+         $.stage @caller, @original.clone()
+   )
