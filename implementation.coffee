@@ -5,7 +5,7 @@ module.exports = implementation:
    
    console:
       print: new Execution (label)-> console.log label.alien
-      inspect: new Execution (thing)-> console.log thing.inspect
+      inspect: new Execution (thing)-> console.log thing.inspect()
    
    # I don't like this. The semantics of “what stop() means” are waaaaay too complex (or just
    # wishy-washy) for everyday users. Going to get rid of it.
