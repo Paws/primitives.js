@@ -51,6 +51,17 @@ module.exports = infrastructure:
    
    own:        undefined # NYI
    disown:     undefined # NYI
+   
+   # ### Procedures for `Label`s
+   label:
+      
+      clone:   Alien.synchronous (it)->
+                  return Label::clone.call it
+      compare: Alien.synchronous (it, other)->
+                  if Label::compare.call it, other then return it else return null
+      
+      explode: Alien.synchronous (it)->
+                  return it.explode()
 
 # FIXME: I need to replace this `parseInt` call. Hell, I need to *spec* how number-strings are
 #        supposed to be used. #iamaterribleperson >,>
