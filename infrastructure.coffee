@@ -74,6 +74,36 @@ module.exports = infrastructure:
       
       explode: Alien.synchronous (it)->
                   return it.explode()
+   
+   # ### Procedures specific to `Execution`s
+   execution:
+      
+      # TODO: Add an #asynchronous alternative to the super-useful #synchronous, specifically to aid
+      #       in the implementation of aliens like the following
+      branch: new Alien(
+         (caller, $)->
+            @caller = caller
+            $.stage caller, this
+         (it, $)->
+            clone = (if it instanceof Alien then Alien else Native)::clone.call it
+            if it == @caller
+               $.stage clone, @caller
+               $.stage @caller, clone
+            else # it != @caller
+               $.stage @caller, clone
+      )
+      
+      # XXX: ... this seems too easy.
+      stage:   Alien.synchronous (it, value)->
+                  @unit.stage it, value
+      
+      # NOTE: A noop, 'cuz the default receiver (call-pattern) involves unstaging.
+      unstage: new Alien -> # noop
+      
+      # FIXME: yadda yadda meaningless arguments
+      charge:  undefined # NYI
+      discharge: undefined # NYI
+      
 
 # FIXME: I need to replace this `parseInt` call. Hell, I need to *spec* how number-strings are
 #        supposed to be used. #iamaterribleperson >,>
