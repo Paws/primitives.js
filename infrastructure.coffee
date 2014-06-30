@@ -52,7 +52,19 @@ module.exports = infrastructure:
    own:        undefined # NYI
    disown:     undefined # NYI
    
-   # ### Procedures for `Label`s
+   # ### Procedures specific to `Label`s
+   #---
+   # FIXME: Clearly, there's currently no semantic for *checking* if the incoming `Thing` is
+   #        actually a `Label` (or rather, duck-typing style, that it has the `Label`-y methods.)
+   #        
+   #        This remains the case for two reasons:
+   #         - there's still no error-handling mechanism in place to interact with such a situation,
+   #           if we tested for it
+   #         - I'd rather like to avoid revealing to libspace the *type* (that is, in the JavaScript
+   #           sense) of an existing value ... it already feels like a hack to me, that there *are*
+   #           any "types" to nodes in the data-graph. If libspace wants "can this be exploded?"-
+   #           information at runtime, then it should encode that information *into* the data-graph
+   #           itself
    label:
       
       clone:   Alien.synchronous (it)->
