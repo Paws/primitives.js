@@ -94,8 +94,10 @@ module.exports = infrastructure:
       )
       
       # XXX: ... this seems too easy.
+      # TODO: meaningless return value, clearly, but ... how the fuck does one stage `stage`, then?
       stage:   Alien.synchronous (it, value)->
                   @unit.stage it, value
+                  return value
       
       # NOTE: A noop, 'cuz the default receiver (call-pattern) involves unstaging.
       unstage: new Alien -> # noop
