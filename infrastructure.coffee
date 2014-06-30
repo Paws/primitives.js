@@ -37,11 +37,10 @@ module.exports = infrastructure:
    #        ... so, could go either way.
    compare:    Alien.synchronous (it, other)->
                   if Thing::compare.call it, other then return it else return null
-   
    clone:      Alien.synchronous (it)->
-                  return it.clone()
+                  return Thing::clone.call it
    adopt:      Alien.synchronous (it, other)->
-                  other.clone it
+                  Thing::clone.call other, it
                   return null
    
    receiver:   Alien.synchronous (it)->
