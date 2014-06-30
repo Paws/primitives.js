@@ -32,6 +32,9 @@ module.exports = infrastructure:
                   console.log it.metadata
                   return new Label it.metadata.length - 1
    
+   find:       Alien.synchronous (it, other)->
+                  return new Thing it.find(other)...
+   
    # FIXME: Not happy with this, at the moment. I'm staunchly against meaningless return-values, and
    #        in this case, `it` is firmly meaningless. Problem is, I still ain't got booleans decided
    #        ... so, could go either way.
@@ -49,8 +52,13 @@ module.exports = infrastructure:
                   it.receiver = receiver
                   return null
    
-   own:        undefined # NYI
-   disown:     undefined # NYI
+   own:        Alien.synchronous (it, idx)->
+                  it.metadata[numberish idx].responsible()
+                  return null
+   disown:     Alien.synchronous (it, idx)->
+                  it.metadata[numberish idx].irresponsible()
+                  return null
+   
    
    # ### Procedures specific to `Label`s
    #---
@@ -74,6 +82,7 @@ module.exports = infrastructure:
       
       explode: Alien.synchronous (it)->
                   return it.explode()
+   
    
    # ### Procedures specific to `Execution`s
    execution:
