@@ -29,7 +29,6 @@ module.exports = infrastructure:
                  return it.shift()
    
    length:     Alien.synchronous (it)->
-                  console.log it.metadata
                   return new Label it.metadata.length - 1
    
    find:       Alien.synchronous (it, other)->
