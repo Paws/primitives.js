@@ -1,5 +1,8 @@
 `                                                                                                                 /*|*/ require = require('../../Library/cov_require.js')(require)`
-module.exports = infrastructure:
+Paws = require '../Paws.coffee'
+
+module.exports =
+-> Paws.Thing.with(names: yes).construct infrastructure:
    
    # ### Procedures for all `Thing`s
    

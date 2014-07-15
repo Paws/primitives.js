@@ -1,5 +1,8 @@
 `                                                                                                                 /*|*/ require = require('../../Library/cov_require.js')(require)`
-module.exports = implementation:
+Paws = require '../Paws.coffee'
+
+module.exports =
+-> Paws.Thing.with(names: yes).construct implementation:
    
    version: -> return new Label require('../../package.json').version
    
