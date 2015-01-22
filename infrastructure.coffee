@@ -1,4 +1,3 @@
-`                                                                                                                 /*|*/ require = require('../../Library/cov_require.js')(require)`
 module.exports = infrastructure:
    
    # ### Procedures for all `Thing`s
