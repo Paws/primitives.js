@@ -1,4 +1,3 @@
-`                                                                                                                 /*|*/ require = require('../../Library/cov_require.js')(require)`
 Paws = require '../Paws.coffee'
 Rule = require '../rule.coffee'
 
