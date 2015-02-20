@@ -30,4 +30,4 @@ module.exports.generate_members = (rule)->
       
       eventually: new Native (block, $)->
          rule.eventually block
-         $.stage current_caller, rule if rule.caller
+         $.stage rule.caller, rule if rule.caller
