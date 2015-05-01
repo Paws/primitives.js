@@ -1,7 +1,15 @@
 Paws = require '../Paws.coffee'
 
+{  Thing, Label, Execution, Native
+,  Relation, Combination, Position, Mask
+,  reactor, parse, debugging, utilities: util                                               } = Paws
+
+{  ENV, verbosity, is_silent, colour
+,  emergency, alert, critical, error, warning, notice, info, debug, verbose, wtf       } = debugging
+
+
 module.exports =
--> Paws.Thing.with(names: yes).construct implementation:
+-> Thing.with(names: yes).construct implementation:
 
    version: -> return new Label require('../../package.json').version
 

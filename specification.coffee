@@ -1,13 +1,20 @@
 Paws = require '../Paws.coffee'
 Rule = require '../rule.coffee'
 
+{  Thing, Label, Execution, Native
+,  Relation, Combination, Position, Mask
+,  reactor, parse, debugging, utilities: util                                               } = Paws
+
+{  ENV, verbosity, is_silent, colour
+,  emergency, alert, critical, error, warning, notice, info, debug, verbose, wtf       } = debugging
+
 module.exports =
--> Paws.Thing.with(names: yes).construct specification:
+-> Thing.with(names: yes).construct specification:
 
    rule: (title, body)-> new Rule this, title, body
 
 module.exports.generate_block_locals = (rule)->
-   Paws.Thing.with(names: yes).construct
+   Thing.with(names: yes).construct
 
       # None of these result. When reached, they're the end of your test.
       pass: new Native -> rule.pass()
@@ -22,7 +29,7 @@ module.exports.generate_block_locals = (rule)->
          stageable:  (it)-> if it instanceof Execution then return it else return null
 
 module.exports.generate_members = (rule)->
-   Paws.Thing.with(names: yes).construct
+   Thing.with(names: yes).construct
 
       pass: new Native (_,$)-> rule.pass(); $.stage rule.caller, rule if rule.caller
       fail: new Native (_,$)-> rule.fail(); $.stage rule.caller, rule if rule.caller
