@@ -103,5 +103,5 @@ module.exports =
 #        supposed to be used. #iamaterribleperson >,>
 numberish = (number)->
    number = parseInt number.alien, 10 if number instanceof Label
-   return 0 if not _.isNumber number or isNaN number
+   return 0 if not util.isNumber number or isNaN number
    return number
