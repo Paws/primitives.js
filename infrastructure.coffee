@@ -16,34 +16,34 @@ module.exports =
    empty:      -> new Thing
 
    get:        (it, idx)-> return it.at numberish idx
-   set:        (it, idx, to)->   it.set numberish(idx), to    ; return null
+   set:        (it, idx, to)->   it.set numberish(idx), to                             ; return null
    cut:        (it, idx)->
                   idx = numberish idx
                   result = it.at idx
                   delete it.metadata[idx]
                   return result
 
-   affix:       (it, other)-> it.push other     ; return null
-   unaffix:     (it)-> return it.pop()
-   prefix:      (it, other)-> it.unshift other  ; return null
-   unprefix:    (it)-> return it.shift()
+   affix:      (it, other)-> it.push other                                             ; return null
+   unaffix:    (it)-> return it.pop()
+   prefix:     (it, other)-> it.unshift other                                          ; return null
+   unprefix:   (it)-> return it.shift()
 
-   length:      (it)-> return new Label it.metadata.length - 1
+   length:     (it)-> return new Label it.metadata.length - 1
 
-   find:        (it, other)-> return new Thing it.find(other)...
+   find:       (it, other)-> return new Thing it.find(other)...
 
    # FIXME: Not happy with this, at the moment. I'm staunchly against meaningless return-values, and
    #        in this case, `it` is firmly meaningless. Problem is, I still ain't got booleans decided
    #        ... so, could go either way.
-   compare:     (it, other)-> if Thing::compare.call it, other then return it else return null
-   clone:       (it)->    return Thing::clone.call it
-   adopt:       (it, other)->    Thing::clone.call other, it   ; return null
+   compare:    (it, other)-> if Thing::compare.call it, other then return it else        return null
+   clone:      (it)->    return Thing::clone.call it
+   adopt:      (it, other)->    Thing::clone.call other, it                            ; return null
 
-   receiver:    (it)-> return it.receiver
-   receive:     (it, receiver)-> it.receiver = receiver        ; return null
+   receiver:   (it)-> return it.receiver
+   receive:    (it, receiver)-> it.receiver = receiver                                 ; return null
 
-   own:         (it, idx)-> it.metadata[numberish idx].owned()       ; return null
-   disown:      (it, idx)-> it.metadata[numberish idx].disowned()    ; return null
+   own:        (it, idx)-> it.own_at[numberish idx]                                    ; return null
+   disown:     (it, idx)-> it.disown_at[numberish idx]                                 ; return null
 
 
    # ### Procedures specific to `Label`s
@@ -61,10 +61,10 @@ module.exports =
    #           itself
    label:
 
-      clone:    (it)->    return Label::clone.call it
-      compare:  (it, other)-> if Label::compare.call it, other then return it else return null
+      clone:   (it)->    return Label::clone.call it
+      compare: (it, other)-> if Label::compare.call it, other then return it else return null
 
-      explode:  (it)-> return it.explode()
+      explode: (it)-> return it.explode()
 
 
    # ### Procedures specific to `Execution`s
